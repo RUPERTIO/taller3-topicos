@@ -23,12 +23,12 @@ export class LoggingInterceptor implements NestInterceptor {
     const { fieldName, parentType } = info;
     const start = Date.now();
 
-    this.logger.log('[GraphQL Request] Iniciando ${ parentType.name } -> ${ fieldName }');
+    this.logger.log(`[GraphQL Request] Iniciando ${parentType.name} -> ${fieldName}`);
 
     return next.handle().pipe(
       tap(() =>
         this.logger.log(
-          '[GraphQL Response] Completado ${ parentType.name } -> ${ fieldName } en ${ Date.now() - start }ms',
+          `[GraphQL Response] Completado ${parentType.name} -> ${fieldName} en ${Date.now() - start}ms`,
         ),
       ),
     );
