@@ -1,8 +1,5 @@
 import { registerEnumType } from '@nestjs/graphql';
 
-/**
- * Enum que representa el estado actual de una tarea en el sistema.
- */
 export enum TaskStatus {
   BACKLOG = 'Backlog',
   TODO = 'To Do',
