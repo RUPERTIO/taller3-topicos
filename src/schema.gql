@@ -2,6 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""Una tarea en el sistema de gestión de proyectos."""
 type Task {
   id: ID!
   title: String!
@@ -13,7 +14,7 @@ type Task {
   project: String!
 }
 
-
+"""Los diferentes estados por los que puede pasar una tarea."""
 enum TaskStatus {
   BACKLOG
   TODO

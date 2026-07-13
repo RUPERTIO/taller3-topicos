@@ -1,0 +1,129 @@
+================================================================================
+QUERIES Y MUTATIONS DE PRUEBA - API GraphQL Gestión de Tareas
+================================================================================
+Servidor: http://localhost:3000/graphql
+NOTA: En los pasos 3, 4, 5 y 7 reemplaza el ID con el que devuelva el Paso 1.
+================================================================================
+
+
+--- PASO 1: Crear una tarea ---
+
+mutation {
+  createTask(input: {
+    title: "Implementar login"
+    description: "Crear el módulo de autenticación"
+    tags: ["auth", "backend"]
+    assignee: "usuario1"
+    project: "proyecto-alpha"
+  }) {
+    id
+    title
+    status
+    createdAt
+    tags
+    assignee
+    project
+  }
+}
+
+
+--- PASO 2: Listar todas las tareas ---
+
+query {
+  tasks {
+    id
+    title
+    status
+    tags
+    assignee
+    project
+  }
+}
+
+
+--- PASO 3: Buscar una tarea por ID ---
+
+query {
+  task(id: "PEGA-EL-ID-AQUI") {
+    id
+    title
+    status
+    description
+    createdAt
+  }
+}
+
+
+--- PASO 4: Actualizar campos parciales (status + título + tags) ---
+
+mutation {
+  updateTask(input: {
+    id: "PEGA-EL-ID-AQUI"
+    title: "Implementar login v2"
+    status: IN_PROGRESS
+    tags: ["auth", "backend", "jwt"]
+  }) {
+    id
+    title
+    status
+    tags
+  }
+}
+
+
+--- PASO 5: Confirmar que el cambio se guardó (buscar de nuevo) ---
+
+query {
+  task(id: "PEGA-EL-ID-AQUI") {
+    id
+    title
+    status
+    tags
+  }
+}
+
+
+--- PASO 6: Probar manejo de error (buscar ID que no existe) ---
+RESULTADO ESPERADO: Error con mensaje "Tarea con ID ... no encontrada."
+
+query {
+  task(id: "id-que-no-existe") {
+    id
+    title
+  }
+}
+
+
+--- PASO 7: Eliminar la tarea ---
+RESULTADO ESPERADO: true
+
+mutation {
+  deleteTask(id: "PEGA-EL-ID-AQUI")
+}
+
+
+--- PASO 8: Confirmar que fue eliminada (listar de nuevo) ---
+RESULTADO ESPERADO: array vacío []
+
+query {
+  tasks {
+    id
+    title
+  }
+}
+
+
+--- PASO 9: Prueba del Hello World de verificación de GraphQL ---
+
+query {
+  hello
+}
+
+
+================================================================================
+VALORES DE ESTADO VÁLIDOS PARA TaskStatus (usar en mutations):
+  BACKLOG
+  TODO
+  IN_PROGRESS
+  DONE
+================================================================================
