@@ -1,5 +1,6 @@
  Taller 3 (ahora parcial) Tópicos Especiales de Programación 202625 Universidad Católica Andrés Bello
  Andres E Martinez H
+ Lilian S Morales
  ----------------------------------------
  Componente | Versión 
 
